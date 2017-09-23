@@ -1,4 +1,24 @@
 <resources>
     <string name="app_name">Doodlz</string>
     <string name="action_settings">Settings</string>
+    <string name="button_erase">Kasuj obraz</string>
+    <string name="button_set_color">Wybierz kolor</string>
+    <string name="button_set_line_width">Określ grubość linii</string>
+    <string name="line_imageview_description">Wyświetla grubość linii</string>
+    <string name="label_alpha">Alfa</string>
+    <string name="label_red">Czerwony</string>
+    <string name="label_green">Zielony</string>
+    <string name="label_blue">Niebieski</string>
+    <string name="menuitem_color">Kolor</string>
+    <string name="menu_item_delete">Kasuj rysunek</string>
+    <string name="menu_item_line_width">Grubość linii</string>
+    <string name="menu_item_save">Zapisz</string>
+    <string name="menu_item_print">Drukuj</string>
+    <string name="message_erase">Skasować rysunek?</string>
+    <string name="message_error_saving">Błąd zapisu obrazu</string>
+    <string name="message_saved">Zapisany obraz możesz obejrzeć za pomocą aplikacji Zdjęcia, wybierając odpowiedni folder w menu tej aplikacji</string>
+    <string name="message_error_printing">Twoje urządzenie nie obsługuje drukowania</string>
+    <string name="permission_explanation">Apliakcjia może zapisać obraz, dopiero gdy uzyska zezwolenie umożliwiające zapis w zewnętrznym magazynie</string>
+    <string name="title_color_dialog">Wybierz kolor</string>
+    <string name="titlie_line_width_dialog">Wybierz grubość linii</string>
 </resources>
