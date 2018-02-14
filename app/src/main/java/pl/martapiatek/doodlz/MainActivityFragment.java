@@ -195,7 +195,7 @@ public class MainActivityFragment extends Fragment {
 
 
         }
-        //doodleView.saveImage(); // zapisz obraz
+        doodleView.saveImage(); // zapisz obraz
     }
 
 
@@ -206,7 +206,7 @@ public class MainActivityFragment extends Fragment {
         switch (requestCode){
             case SAVE_IMAGE_PERMISSION_REQUEST_CODE:
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
-     //           doodleView.saveImage();
+                doodleView.saveImage();
             return;
 
         }
