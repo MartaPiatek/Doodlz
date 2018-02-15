@@ -159,7 +159,7 @@ public class MainActivityFragment extends Fragment {
                 return true;
 
             case R.id.print:
-                //   doodleView.printImage();
+                doodleView.printImage();
                 return true;
 
         }
@@ -167,31 +167,31 @@ public class MainActivityFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    private void saveImage(){
+    private void saveImage() {
 
         //sprawdz czy nadano uprawnienia potrzebne do zapisu
-        if(getContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+        if (getContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-    if(shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        // tresc komunikatu
-        builder.setMessage(R.string.permission_explanation);
+                // tresc komunikatu
+                builder.setMessage(R.string.permission_explanation);
 
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //zażadaj potwierdzenia
+                builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //zażadaj potwierdzenia
+                        requestPermissions(new String[]{
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE}, SAVE_IMAGE_PERMISSION_REQUEST_CODE);
+
+                    }
+                });
+                builder.create().show();
+            } else {
                 requestPermissions(new String[]{
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE},SAVE_IMAGE_PERMISSION_REQUEST_CODE);
-
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE}, SAVE_IMAGE_PERMISSION_REQUEST_CODE);
             }
-        });
-        builder.create().show();
-    } else{
-        requestPermissions(new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE},SAVE_IMAGE_PERMISSION_REQUEST_CODE);
-    }
 
 
         }
@@ -203,20 +203,20 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        switch (requestCode){
+        switch (requestCode) {
             case SAVE_IMAGE_PERMISSION_REQUEST_CODE:
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                doodleView.saveImage();
-            return;
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    doodleView.saveImage();
+                return;
 
         }
     }
 
-    public DoodleView getDoodleView(){
+    public DoodleView getDoodleView() {
         return doodleView;
     }
 
-    public void setDialogOnScreen(boolean visible){
+    public void setDialogOnScreen(boolean visible) {
         dialogOnScreen = visible;
     }
 }

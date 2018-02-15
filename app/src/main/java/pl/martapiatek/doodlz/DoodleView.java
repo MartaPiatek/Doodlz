@@ -12,6 +12,7 @@ import android.graphics.Point;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.print.PrintHelper;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -180,30 +181,48 @@ public class DoodleView extends View {
     }
 
     //zapisz bieżący obraz w galerii
-    public void saveImage(){
+    public void saveImage() {
 
         //utwórz nazwę pliku
-        final String name = "Doodlz"+System.currentTimeMillis()+".jpg";
+        final String name = "Doodlz" + System.currentTimeMillis() + ".jpg";
 
         //zapisz obraz w pamięci urządzenia
         String location = MediaStore.Images.Media.insertImage(
-                getContext().getContentResolver(), bitmap, name, "Doodlz Drawing" );
+                getContext().getContentResolver(), bitmap, name, "Doodlz Drawing");
 
-    if(location != null){
+        if (location != null) {
 
-        //wyświetl komunikat o zapisaniu obrazu
-        Toast message = Toast.makeText(getContext(), R.string.message_saved, Toast.LENGTH_SHORT);
-        message.setGravity(Gravity.CENTER, message.getXOffset()/2, message.getYOffset()/2);
-        message.show();
+            //wyświetl komunikat o zapisaniu obrazu
+            Toast message = Toast.makeText(getContext(), R.string.message_saved, Toast.LENGTH_SHORT);
+            message.setGravity(Gravity.CENTER, message.getXOffset() / 2, message.getYOffset() / 2);
+            message.show();
+        } else {
+
+            //wyświetl komunikat o błędzie zapisu
+            Toast message = Toast.makeText(getContext(), R.string.message_error_saving, Toast.LENGTH_SHORT);
+            message.setGravity(Gravity.CENTER, message.getXOffset() / 2, message.getYOffset() / 2);
+            message.show();
+        }
+
     }
-    else {
 
-        //wyświetl komunikat o błędzie zapisu
-        Toast message = Toast.makeText(getContext(), R.string.message_error_saving, Toast.LENGTH_SHORT);
-        message.setGravity(Gravity.CENTER, message.getXOffset()/2, message.getYOffset()/2);
-        message.show();
-    }
+    //drukuj obraz
+    public void printImage(){
+        if(PrintHelper.systemSupportsPrint()){
 
+            PrintHelper printHelper = new PrintHelper(getContext());
+
+            //przeskaluj obraz tak, aby zmieścił się w obszarze wydruku
+            printHelper.setScaleMode(PrintHelper.SCALE_MODE_FIT);
+            //wydrukuj
+            printHelper.printBitmap("Doodlz Image", bitmap);
+        }
+        else {
+            // komunikat o błędzie drukowania
+            Toast message = Toast.makeText(getContext(), R.string.message_error_printing, Toast.LENGTH_SHORT);
+            message.setGravity(Gravity.CENTER, message.getXOffset()/2, message.getYOffset()/2);
+            message.show();
+        }
     }
 
 }
