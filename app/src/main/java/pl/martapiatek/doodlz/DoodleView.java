@@ -207,8 +207,8 @@ public class DoodleView extends View {
     }
 
     //drukuj obraz
-    public void printImage(){
-        if(PrintHelper.systemSupportsPrint()){
+    public void printImage() {
+        if (PrintHelper.systemSupportsPrint()) {
 
             PrintHelper printHelper = new PrintHelper(getContext());
 
@@ -216,11 +216,10 @@ public class DoodleView extends View {
             printHelper.setScaleMode(PrintHelper.SCALE_MODE_FIT);
             //wydrukuj
             printHelper.printBitmap("Doodlz Image", bitmap);
-        }
-        else {
+        } else {
             // komunikat o błędzie drukowania
             Toast message = Toast.makeText(getContext(), R.string.message_error_printing, Toast.LENGTH_SHORT);
-            message.setGravity(Gravity.CENTER, message.getXOffset()/2, message.getYOffset()/2);
+            message.setGravity(Gravity.CENTER, message.getXOffset() / 2, message.getYOffset() / 2);
             message.show();
         }
     }

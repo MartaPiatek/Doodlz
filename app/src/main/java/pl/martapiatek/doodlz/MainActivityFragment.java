@@ -125,7 +125,7 @@ public class MainActivityFragment extends Fragment {
 
     private void confirmErase() {
         EraseImageDialogFragment fragment = new EraseImageDialogFragment();
-        //  fragment.show(getFragmentManager(), "erase dialog");
+        fragment.show(getFragmentManager(), "erase dialog");
     }
 
     @Override
@@ -147,7 +147,7 @@ public class MainActivityFragment extends Fragment {
 
             case R.id.line_width:
                 LineWidthDialogFragment widthDialog = new LineWidthDialogFragment();
-                // widthDialog.show(getFragmentManager(), "line width dialog");
+                widthDialog.show(getFragmentManager(), "line width dialog");
                 return true;
 
             case R.id.delete_drawing:
