@@ -142,7 +142,7 @@ public class MainActivityFragment extends Fragment {
 
             case R.id.color:
                 ColorDialogFragment colorDialog = new ColorDialogFragment();
-                //colorDialog.show(getFragmentManager(), "color dialog");
+                colorDialog.show(getFragmentManager(), "color dialog");
                 return true;
 
             case R.id.line_width:
