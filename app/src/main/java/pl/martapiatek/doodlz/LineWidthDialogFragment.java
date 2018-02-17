@@ -86,12 +86,19 @@ public class LineWidthDialogFragment extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        Activity a;
+
+        if (context instanceof Activity) {
+            a = (Activity) context;
+        }
         MainActivityFragment fragment = getDoodleFragment();
         if (fragment != null)
             fragment.setDialogOnScreen(true);
     }
+
 
     @Override
     public void onDetach() {

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -24,7 +25,29 @@ public class ColorDialogFragment extends DialogFragment {
     private SeekBar blueSeekBar;
     private View colorView;
     private int color;
+    //interfejs obsługujący suwaki
+    private final SeekBar.OnSeekBarChangeListener colorChangedListener = new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
+            if (fromUser)
+                color = Color.argb(alphaSeekBar.getProgress(),
+                        redSeekBar.getProgress(),
+                        greenSeekBar.getProgress(),
+                        blueSeekBar.getProgress());
+            colorView.setBackgroundColor(color);
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    };
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -73,8 +96,14 @@ public class ColorDialogFragment extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        Activity a;
+
+        if (context instanceof Activity) {
+            a = (Activity) context;
+        }
         MainActivityFragment fragment = getDoodleFragment();
         if (fragment != null)
             fragment.setDialogOnScreen(true);
@@ -87,28 +116,4 @@ public class ColorDialogFragment extends DialogFragment {
         if (fragment != null)
             fragment.setDialogOnScreen(false);
     }
-
-    //interfejs obsługujący suwaki
-    private final SeekBar.OnSeekBarChangeListener colorChangedListener = new SeekBar.OnSeekBarChangeListener() {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-            if(fromUser)
-                color = Color.argb(alphaSeekBar.getProgress(),
-                        redSeekBar.getProgress(),
-                        greenSeekBar.getProgress(),
-                        blueSeekBar.getProgress());
-            colorView.setBackgroundColor(color);
-        }
-
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-
-        }
-    };
 }
