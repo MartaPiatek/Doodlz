@@ -125,7 +125,7 @@ public class MainActivityFragment extends Fragment {
 
     private void confirmErase() {
         EraseImageDialogFragment fragment = new EraseImageDialogFragment();
-        //fragment.show(getFragmentManager(), "erase dialog");
+        fragment.show(getFragmentManager(), "erase dialog");
     }
 
     @Override
